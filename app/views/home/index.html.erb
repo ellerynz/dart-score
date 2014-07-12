@@ -1,18 +1,15 @@
-<section class="players" ng-controller="PlayerController as playerCtrl">
-  <form ng-submit="addPlayer()">
-    <input type="text" ng-model="playerName"/>
+<section class="players" ng-controller="DartboardController as dartCtrl">
+  <form name="shit" ng-submit="dartCtrl.addPlayer(name)">
+    <input type="text" name="name" ng-model="name"/>
     <input class="submit" type="submit" value="Add player" />
   </form>
   <ul>
-    <li ng-repeat="player in playerCtrl.players">
-      {{player.name}}
-      {{player.score}}
+    <li ng-repeat="player in dartCtrl.players">
+      {{player.name}} : {{player.score}}
     </li>
   </ul>
-<!-- have a form to add players -->
-<!-- render all the players in the list -->
 </section>
-<section class="dartboard" ng-controller="DartboardController as dartCtrl" ng-click="dartCtrl.showMe($event)">
+<section class="dartboard" ng-controller="DartboardController as dartCtrl" ng-click="dartCtrl.dartThrow($event)">
   <%= inline_svg("dartboard.svg") %>
 </section>
 
