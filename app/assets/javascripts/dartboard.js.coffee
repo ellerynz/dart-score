@@ -11,17 +11,16 @@ angular.module("dartboard", [])
         @players.push(name: name, score: 501, shots: [])
         console.log "Player #{name} has entered the game."
 
-      setCurrentPlayer: ->
-        @currentPlayer = @players[0]
+      setCurrentPlayer: (player) ->
+        @currentPlayer = player
 
       # expects the format s1 or d15
-      dartThrow: (e) ->
+      dartThrow: (e) =>
         dartHit = e.target.id
 
         unless dartHit == "dartboard"
-          # handle bullseye etc
+          # TODO: handle bullseye etc
           @lastScore   = dartHit.slice(1,3) * @scoreMultiplier(dartHit[0])
-          @setCurrentPlayer()
           @updateScore(@currentPlayer, @lastScore)
 
       scoreMultiplier: (type) ->
@@ -31,7 +30,6 @@ angular.module("dartboard", [])
           else 1          # single
 
       updateScore: (player, score) ->
-        console.log player
         player.score -= score
         player.shots.push(score)
 

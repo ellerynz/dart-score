@@ -112,6 +112,7 @@ GEM
     uglifier (2.5.1)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
+    underscore-rails (1.6.0)
 
 PLATFORMS
   ruby
@@ -129,3 +130,4 @@ DEPENDENCIES
   sdoc
   turbolinks
   uglifier
+  underscore-rails

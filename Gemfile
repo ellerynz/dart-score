@@ -10,6 +10,7 @@ gem 'uglifier'
 gem 'coffee-rails'
 gem 'jquery-rails'
 gem 'angularjs-rails'
+gem 'underscore-rails'
 gem 'turbolinks'
 
 gem 'bcrypt-ruby', '~> 3.0.0'

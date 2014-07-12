@@ -1,16 +1,17 @@
-<section class="players" ng-controller="DartboardController as dartCtrl">
-  <div>Last score {{dartCtrl.lastScore}}</div>
-  <form name="shit" ng-submit="dartCtrl.addPlayer(name)">
-    <input type="text" name="name" ng-model="name"/>
-    <input class="submit" type="submit" value="Add player" />
-  </form>
-  <ul>
-    <li ng-repeat="player in dartCtrl.players">
-      {{player.name}} : {{player.score}} : {{player.shots}}
-    </li>
-  </ul>
-</section>
-<section class="dartboard" ng-controller="DartboardController as dartCtrl" ng-click="dartCtrl.dartThrow($event)">
-  <%= inline_svg("dartboard.svg") %>
-</section>
-
+<div ng-controller="DartboardController as dartCtrl">
+  <section class="players">
+    <div>Last score {{dartCtrl.lastScore}}</div>
+    <form name="shit" ng-submit="dartCtrl.addPlayer(name)">
+      <input type="text" name="name" ng-model="name"/>
+      <input class="submit" type="submit" value="Add player" />
+    </form>
+    <ul>
+      <li ng-repeat="player in dartCtrl.players">
+        <div ng-click="dartCtrl.setCurrentPlayer(player)">{{player.name}} : {{player.score}} : {{player.shots}}</div>
+      </li>
+    </ul>
+  </section>
+  <section class="dartboard" ng-click="dartCtrl.dartThrow($event)">
+    <%= inline_svg("dartboard.svg") %>
+  </section>
+</div>
