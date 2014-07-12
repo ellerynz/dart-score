@@ -1,14 +1,17 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="dartboard" xmlns="http://www.w3.org/1999/xhtml">
 <head>
   <title>DartScore</title>
+  <%= stylesheet_link_tag    "https://fonts.googleapis.com/css?family=Open+Sans:400,700" %>
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
-
-<%= yield %>
+<h1>Dart Score</h1>
+<div class="container">
+  <%= yield %>
+</div>
 
 </body>
 </html>
