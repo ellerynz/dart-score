@@ -1,13 +1,13 @@
 <div ng-controller="DartboardController as dartCtrl">
   <section class="players">
-    <div>Last score {{dartCtrl.lastScore}}</div>
+    <h3>Last score {{dartCtrl.lastScore}}</h3>
     <form name="shit" ng-submit="dartCtrl.addPlayer(name)">
-      <input type="text" name="name" ng-model="name"/>
-      <input class="submit" type="submit" value="Add player" />
+      <input type="text" name="name" ng-model="name" placeholder="Add player"/>
+      <input class="submit" type="submit" value="+" />
     </form>
     <ul>
       <li ng-repeat="player in dartCtrl.players">
-        <div ng-click="dartCtrl.setCurrentPlayer(player)">{{player.name}} : {{player.score}} : {{player.shots}}</div>
+        <div ng-click="dartCtrl.setCurrentPlayer(player)" class="ng-class:player.isActive">{{player.name}} : {{player.score}}</div>
       </li>
     </ul>
   </section>

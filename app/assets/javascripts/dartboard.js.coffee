@@ -4,15 +4,19 @@ angular.module("dartboard", [])
     class DartboardController
 
       lastScore: 0
-      players: [{name: "foo", score: 501, shots: []}]
+      players: []
       currentPlayer: {}
 
       addPlayer: (name) ->
-        @players.push(name: name, score: 501, shots: [])
+        player = { name: name, score: 501, shots: [], isActive: "" }
+        @players.push(player)
+        @setCurrentPlayer(player)
         console.log "Player #{name} has entered the game."
 
       setCurrentPlayer: (player) ->
+        @currentPlayer.isActive = ""
         @currentPlayer = player
+        @currentPlayer.isActive = "active"
 
       # expects the format s1 or d15
       dartThrow: (e) =>
@@ -20,8 +24,8 @@ angular.module("dartboard", [])
 
         unless dartHit == "dartboard"
           # TODO: handle bullseye etc
-          @lastScore   = dartHit.slice(1,3) * @scoreMultiplier(dartHit[0])
-          @updateScore(@currentPlayer, @lastScore)
+          score = dartHit.slice(1,3) * @scoreMultiplier(dartHit[0])
+          @updateScore(@currentPlayer, score)
 
       scoreMultiplier: (type) ->
         switch type
@@ -30,8 +34,10 @@ angular.module("dartboard", [])
           else 1          # single
 
       updateScore: (player, score) ->
-        player.score -= score
-        player.shots.push(score)
+        unless _.isEmpty(player)
+          @lastScore    = score
+          player.score -= score
+          player.shots.push(score)
 
       removePlayer: (player) ->
         console.log "Removing #{player}"
