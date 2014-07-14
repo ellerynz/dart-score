@@ -23,7 +23,6 @@ angular.module("dartboard", [])
         dartHit = e.target.id
 
         unless dartHit == "dartboard"
-          # TODO: handle bullseye etc
           score = dartHit.slice(1,3) * @scoreMultiplier(dartHit[0])
           @updateScore(@currentPlayer, score)
 
@@ -35,9 +34,10 @@ angular.module("dartboard", [])
 
       updateScore: (player, score) ->
         unless _.isEmpty(player)
-          @lastScore    = score
+          
           player.score -= score
           player.shots.push(score)
+          @lastScore    = score
 
       removePlayer: (player) ->
         console.log "Removing #{player}"
