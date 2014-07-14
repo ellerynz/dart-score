@@ -1,6 +1,7 @@
 <div ng-controller="DartboardController as dartCtrl">
   <section class="players">
-    <h3>Last score {{dartCtrl.lastScore}}</h3>
+    <h3>{{dartCtrl.getCurrentPlayerName()}}'s last score {{dartCtrl.lastScore}}</h3>
+    <button ng-click="dartCtrl.undoLastThrow()">Undo {{dartCtrl.getCurrentPlayerName()}}'s last throw</button>
     <form name="shit" ng-submit="dartCtrl.addPlayer(name)">
       <input type="text" name="name" ng-model="name" placeholder="Add player"/>
       <input class="submit" type="submit" value="+" />

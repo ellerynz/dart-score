@@ -3,6 +3,7 @@ angular.module("dartboard", [])
 
     class DartboardController
 
+      numTurns:  3
       lastScore: 0
       players: []
       currentPlayer: {}
@@ -41,3 +42,15 @@ angular.module("dartboard", [])
 
       removePlayer: (player) ->
         console.log "Removing #{player}"
+
+      getCurrentPlayerName: ->
+        if _.isEmpty(@currentPlayer)
+          "Player"
+        else
+          @currentPlayer.name
+
+      undoLastThrow: ->
+        if !_.isEmpty(@currentPlayer) && @currentPlayer.shots.length > 0
+          @currentPlayer.score += @currentPlayer.shots.pop()
+          @lastScore = (@currentPlayer.shots[@currentPlayer.shots.length-1] || 0)
+
