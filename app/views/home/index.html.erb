@@ -12,7 +12,9 @@
     </form>
     <ul>
       <li ng-repeat="player in dartCtrl.players" class="player-list">
-        <span ng-click="dartCtrl.setCurrentPlayer(player)" class="ng-class:player.isActive">{{player.name}} : </span><span class="score">{{player.score}}</span>
+        <div ng-click="dartCtrl.setCurrentPlayer(player)" class="ng-class:player.isActive">
+          <span>{{player.name}} : </span><span class="score">{{player.score}}</span>
+        </div>
       </li>
     </ul>
   </section>

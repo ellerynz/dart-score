@@ -1,3 +1,19 @@
+$light-targets: 1, 4, 6, 15, 17, 19, 16, 11, 9, 5, 25
+$dark-targets: 20, 18, 13, 10, 2, 3, 7, 8, 14, 12, 50
+$multipliers: d t b
+
+$sweet-green: #2CAD6B
+$sweet-red: #ED3237
+
+=colour-target($multiplier, $targets, $colour)
+  @each $target in $targets
+    ##{$multiplier}#{$target}
+      fill: $colour
+
+@each $m in $multipliers
+  +colour-target($m, $light-targets, $sweet-green)
+  +colour-target($m, $dark-targets, $sweet-red)
+
 .dartboard
   float: right
 
@@ -21,7 +37,8 @@
   float: right
 
 .active
-  color: green
+  font-size: 1.25em
+  font-weight: bold
 
 .undo
   float: right
