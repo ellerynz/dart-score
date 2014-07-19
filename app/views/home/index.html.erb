@@ -1,18 +1,23 @@
 <div ng-controller="DartboardController as dartCtrl">
   <section class="players">
-    <h3>{{dartCtrl.getCurrentPlayerName()}}'s last score {{dartCtrl.lastScore}}</h3>
-    <button ng-click="dartCtrl.undoLastThrow()">Undo {{dartCtrl.getCurrentPlayerName()}}'s last throw</button>
-    <form name="shit" ng-submit="dartCtrl.addPlayer(name)">
+    <h3>Player</h3>
+    <ul class="inline">
+      <li>15</li>
+      <li>12</li>
+      <li>1</li>
+    </ul>
+    <form class="add-player-form" name="shit" ng-submit="dartCtrl.addPlayer(name)">
       <input type="text" name="name" ng-model="name" placeholder="Add player"/>
       <input class="submit" type="submit" value="+" />
     </form>
     <ul>
-      <li ng-repeat="player in dartCtrl.players">
-        <div ng-click="dartCtrl.setCurrentPlayer(player)" class="ng-class:player.isActive">{{player.name}} : {{player.score}}</div>
+      <li ng-repeat="player in dartCtrl.players" class="player-list">
+        <span ng-click="dartCtrl.setCurrentPlayer(player)" class="ng-class:player.isActive">{{player.name}} : </span><span class="score">{{player.score}}</span>
       </li>
     </ul>
   </section>
   <section class="dartboard" ng-click="dartCtrl.dartThrow($event)">
+  <button class="undo" ng-click="dartCtrl.undoLastThrow()">Undo</button>
     <%= inline_svg("dartboard.svg") %>
   </section>
 </div>
