@@ -1,6 +1,9 @@
 <div ng-controller="DartboardController as dartCtrl">
   <section class="players">
     <h3>{{dartCtrl.getCurrentPlayerName()}}</h3>
+    <p class="winning-message">
+      <i>{{dartCtrl.winItMessage()}}</i>
+    </p>
     <ul class="inline" >
       <li ng-repeat="shot in dartCtrl.currentPlayer.turn track by $index">{{shot}}</li>
     </ul>

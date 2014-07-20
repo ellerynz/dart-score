@@ -50,22 +50,50 @@ angular.module("dartboard", [])
         @currentPlayer.shots.push(score)
         @lastScore = score
 
+      isBust: ->
+        @currentPlayer.score < 0 || @currentPlayer.score == 1
+
+      hasWon: ->
+        @currentPlayer.score == 0
+
       isScoreInDoubleRange: (score) ->
         score <= @highestDouble
+
+      evenScoreRemaining: ->
+        @currentPlayer.score % 2 == 0
+
+      doubleToWin: ->
+        @currentPlayer.score / 2
+
+      winItMessage: ->
+        if @isBust()
+          @bustScore()
+          "Bust!"
+        else if @hasWon()
+          "YEWWWW!"
+        else if @isScoreInDoubleRange(@currentPlayer.score)
+          if @evenScoreRemaining()
+            "Double #{@doubleToWin()} to win" 
+          else
+            "In winning range"
+
+      bustScore: ->
+        @undoLastThrow(false) for n in @currentPlayer.turn
+        @currentPlayer.turn = []
 
       removePlayer: (player) ->
         console.log "Removing #{player}"
 
       getCurrentPlayerName: ->
         if _.isEmpty(@currentPlayer)
-          "Yeezy motherfucker"
+          "Dart Score"
         else
           "#{@currentPlayer.name}'s turn"
 
-      undoLastThrow: ->
+      undoLastThrow: (undoTurn=true) ->
         if !_.isEmpty(@currentPlayer) && @currentPlayer.shots.length > 0
           @currentPlayer.score += @currentPlayer.shots.pop()
-          @undoLastTurn()
+          @undoLastTurn() if undoTurn
           @lastScore = (@currentPlayer.shots[@currentPlayer.shots.length-1] || 0)
 
       undoLastTurn: ->
