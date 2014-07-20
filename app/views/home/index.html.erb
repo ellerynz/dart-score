@@ -1,13 +1,13 @@
 <div ng-controller="DartboardController as dartCtrl">
   <section class="players">
-    <h3>Player</h3>
+    <h3>{{dartCtrl.getCurrentPlayerName()}}</h3>
     <ul class="inline">
       <li>15</li>
       <li>12</li>
       <li>1</li>
     </ul>
-    <form class="add-player-form" name="shit" ng-submit="dartCtrl.addPlayer(name)">
-      <input type="text" name="name" ng-model="name" placeholder="Add player"/>
+    <form class="add-player-form" ng-submit="dartCtrl.addPlayer(dartCtrl.name)">
+      <input type="text" name="name" ng-model="dartCtrl.name" placeholder="Add player" required="true"/>
       <input class="submit" type="submit" value="+" />
     </form>
     <ul>

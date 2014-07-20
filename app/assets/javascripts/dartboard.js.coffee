@@ -2,7 +2,7 @@ angular.module("dartboard", [])
   .controller "DartboardController",
 
     class DartboardController
-
+      name: ""
       numTurns:  3
       lastScore: 0
       players: []
@@ -12,7 +12,7 @@ angular.module("dartboard", [])
         player = { name: name, score: 501, shots: [], isActive: "" }
         @players.push(player)
         @setCurrentPlayer(player)
-        console.log "Player #{name} has entered the game."
+        @name = ""
 
       setCurrentPlayer: (player) ->
         @currentPlayer.isActive = ""
