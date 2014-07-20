@@ -3,7 +3,7 @@ angular.module("dartboard", [])
 
     class DartboardController
       name: ""
-      miss: "Miss!"
+      miss: 0
       highestDouble: 40
       numTurns:  3
       lastScore: 0
