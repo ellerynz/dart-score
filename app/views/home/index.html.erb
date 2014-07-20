@@ -1,10 +1,8 @@
 <div ng-controller="DartboardController as dartCtrl">
   <section class="players">
     <h3>{{dartCtrl.getCurrentPlayerName()}}</h3>
-    <ul class="inline">
-      <li>15</li>
-      <li>12</li>
-      <li>1</li>
+    <ul class="inline" >
+      <li ng-repeat="shot in dartCtrl.currentPlayer.turn track by $index">{{shot}}</li>
     </ul>
     <form class="add-player-form" ng-submit="dartCtrl.addPlayer(dartCtrl.name)">
       <input type="text" name="name" ng-model="dartCtrl.name" placeholder="Add player" required="true"/>
