@@ -3,7 +3,8 @@ angular.module("dartboard", [])
 
     class DartboardController
       name: ""
-      miss: 0
+      missId: "dartboard"
+      missValue: 0
       highestDouble: 40
       numTurns:  3
       lastScore: 0
@@ -22,20 +23,22 @@ angular.module("dartboard", [])
         @currentPlayer.isActive = "active"
 
       dartThrow: (e) =>
-        return if _.isEmpty(@currentPlayer) || !e.target.id
-        @playerTurn(@dartHit(e.target.id))
+        @dartHit(e.target.id) unless !e.target.id
 
-      dartHit: (location) ->
-        if location == "dartboard"
+      dartHit: (target=@missId) ->
+        @addShotToPlayerTurn(@calculateDartHit(target)) unless _.isEmpty(@currentPlayer)
+
+      calculateDartHit: (target) ->
+        if target == @missId
           @updateScore(0)
-          @miss
+          @missValue
         else
           # Expects the format s1 or d15
-          score = location.slice(1,3) * @scoreMultiplier(location[0])
+          score = target.slice(1,3) * @scoreMultiplier(target[0])
           @updateScore(score)
           score
 
-      playerTurn: (shot) ->
+      addShotToPlayerTurn: (shot) ->
         @currentPlayer.turn = [] if @currentPlayer.turn.length >= 3
         @currentPlayer.turn.push(shot)
 

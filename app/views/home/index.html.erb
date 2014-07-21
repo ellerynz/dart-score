@@ -20,7 +20,8 @@
     </ul>
   </section>
   <section class="dartboard" ng-click="dartCtrl.dartThrow($event)">
-  <button class="undo" ng-click="dartCtrl.undoLastThrow()">Undo</button>
+  <button class="right-most-buttons" ng-click="dartCtrl.undoLastThrow()">Undo</button>
+  <button class="right-most-buttons" ng-click="dartCtrl.dartHit()">Miss!</button>
     <%= inline_svg("dartboard.svg") %>
   </section>
 </div>
