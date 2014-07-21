@@ -1,12 +1,13 @@
 angular.module("dartboard", [])
   .service "gameService", 
-  
+
     class GameService
 
       missId: "dartboard"
       missValue: 0
       highestDouble: 40
       numTurns:  3
+      winMessages: ["YEWWWW!", "You've won!", ":)"]
 
       name: ""
       lastScore: 0
@@ -65,12 +66,16 @@ angular.module("dartboard", [])
           @bustScore()
           "Bust!"
         else if @hasWon()
-          "YEWWWW!"
+          @winMessage()
         else if @isScoreInDoubleRange(@currentPlayer.score)
           if @evenScoreRemaining()
             "Double #{@doubleToWin()} to win" 
           else
             "In winning range"
+
+      winMessage: ->
+        randomIndex = Math.floor(Math.random() * (@winMessages.length))
+        @winMessages[randomIndex]
 
       bustScore: ->
         @undoLastThrow(false) for n in @currentPlayer.turn
