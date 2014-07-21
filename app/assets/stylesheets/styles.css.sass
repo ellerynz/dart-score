@@ -3,11 +3,6 @@ body
   color: #333
   background-color: #fafafa
 
-h1
-  padding: 50px
-  font-size: 40px
-  background-color: #fad63a
-
 h3
   padding: 5px 0
   font-size: 20px
@@ -18,28 +13,21 @@ h3
   margin: 0 auto
   padding-bottom: 10px
 
-.large-input
+%large-input
   border-radius: 4px
   border: none
   font-size: 16px
   padding: 5px
   margin: 0
 
-.add-player-form
-  display: flex
-
 input[type=text]
-  @extend .large-input
+  @extend %large-input
   padding-left: 5px
   flex: 9
   border-radius: 4px 0 0 4px
 
-.submit
-  flex: 1
-  border-radius: 0 4px 4px 0
-
 button, .submit
-  @extend .large-input
+  @extend %large-input
   font-weight: bold
   background: #666
   color: #fafafa
@@ -47,4 +35,3 @@ button, .submit
   &:hover
     cursor: pointer
     background: #aaa
-    
