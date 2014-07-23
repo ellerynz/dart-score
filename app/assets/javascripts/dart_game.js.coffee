@@ -3,7 +3,7 @@ angular.module("dartboard", [])
 
     class GameService
 
-      missId: "dartboard"
+      missIds: ["dartboard", "score_1_", "miss"]
       missValue: 0
       highestDouble: 40
       numTurns:  3
@@ -33,11 +33,11 @@ angular.module("dartboard", [])
       currentPlayerTurn: ->
         @currentPlayer.turn || []
 
-      dartHit: (target=@missId) ->
-        @addShotToPlayerTurn(@calculateDartHit(target)) unless _.isEmpty(@currentPlayer)
+      dartHit: (target) ->
+        @addShotToPlayerTurn(@calculateDartHit(target)) if @hasCurrentPlayer()
 
-      calculateDartHit: (target) ->
-        if target == @missId
+      calculateDartHit: (target="miss") ->
+        if target in @missIds
           @updateScore(0)
           @missValue
         else
@@ -97,7 +97,7 @@ angular.module("dartboard", [])
         @currentPlayer.score / 2
 
       undoLastThrow: (undoTurn=true) ->
-        if !_.isEmpty(@currentPlayer) && @currentPlayer.shots.length > 0
+        if @hasCurrentPlayer() && @currentPlayer.shots.length > 0
           @currentPlayer.score += @currentPlayer.shots.pop()
           @undoLastTurn() if undoTurn
           @lastScore = (@currentPlayer.shots[@currentPlayer.shots.length-1] || 0)
